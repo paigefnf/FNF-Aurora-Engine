@@ -2,7 +2,6 @@
 A FNF rewrite for funzies but focusing mostly on adding features and optimizing! Inspired by: [Codename Engine](https://github.com/CodenameCrew/CodenameEngine)
 
 # Building The Engine
-
 > [!NOTE] 
 > YOU NEED TO INSTALL HAXE 4.3.6 IN ORDER TO INSTALL THE HAXE LIBRARIES!!!!
 
@@ -22,3 +21,8 @@ If you're on Windows, follow these steps here:
 
 > [!IMPORTANT]  
 > THIS ENGINE IS UNFINISHED & UNSTABLE, NOT RECOMMEND TO MOD!!!
+
+# Credits
+- Ninjamuffin99 & The Funkin Crew: [Friday Night Funkin'](https://www.newgrounds.com/portal/view/770371)
+- NeeEoo: [Funkin Packer](https://neeeoo.github.io/funkin-packer/) (used for optimizing sprites)
+- Codename Engine: Flixel, Flixel Addons, & FlxAnimate forks
