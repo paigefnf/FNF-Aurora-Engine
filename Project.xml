@@ -2,8 +2,8 @@
 <project>
 	<!-- _________________________ Application Settings _________________________ -->
 
-	<app title="Friday Night Funkin' - Folder Engine" 
-	 file="FolderEngine" 
+	<app title="Friday Night Funkin' - Aurora Engine" 
+	 file="Aurora Engine" 
 	 main="funkin.backend.system.Main" 
 	 version="0.0.1" 
 	 company="PaigeFNF" 
@@ -59,6 +59,8 @@
 	<haxelib name="hxdiscord_rpc" />
 
 	<haxelib name="flxanimate" />
+
+	<haxelib name="hscript" />
 
 
 	<!-- ______________________________ Haxedefines _____________________________ -->

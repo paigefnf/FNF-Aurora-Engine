@@ -1,4 +1,4 @@
-# Friday Night Funkin': Folder Engine
+# Friday Night Funkin': Aurora Engine
 A FNF rewrite for funzies but focusing mostly on adding features and optimizing! Inspired by: [Codename Engine](https://github.com/CodenameCrew/CodenameEngine)
 
 # Building The Engine
