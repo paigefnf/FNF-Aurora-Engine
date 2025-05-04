@@ -6,6 +6,7 @@ echo Installing dependencies.
 haxelib install lime 8.1.2
 haxelib install openfl 9.2.2
 haxelib git flixel https://github.com/CodenameCrew/cne-flixel
+haxelib install flixel-tools
 haxelib git flixel-addons https://github.com/CodenameCrew/cne-flixel-addons
 haxelib git flxanimate https://github.com/CodenameCrew/cne-flxanimate
 haxelib git hxdiscord_rpc https://github.com/MAJigsaw77/hxdiscord_rpc
