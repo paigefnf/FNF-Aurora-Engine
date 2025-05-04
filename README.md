@@ -3,7 +3,7 @@ A FNF rewrite for funzies but focusing mostly on adding features and optimizing!
 
 # Building The Engine
 
->[!NOTE]: 
+> [!NOTE]: 
 > YOU NEED TO INSTALL HAXE 4.3.6 IN ORDER TO INSTALL THE HAXE LIBRARIES!!!!
 
 [Haxe 4.3.6 download](https://haxe.org/download/version/4.3.6/)
