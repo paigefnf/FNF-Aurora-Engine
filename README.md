@@ -25,4 +25,4 @@ If you're on Windows, follow these steps here:
 # Credits
 - Ninjamuffin99 & The Funkin Crew: [Friday Night Funkin'](https://www.newgrounds.com/portal/view/770371)
 - NeeEoo: [Funkin Packer](https://neeeoo.github.io/funkin-packer/) (used for optimizing sprites)
-- Codename Engine: Flixel, Flixel Addons, & FlxAnimate forks
+- Codename Engine: FlxAnimate fork
