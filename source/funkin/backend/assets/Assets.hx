@@ -7,7 +7,7 @@ import openfl.utils.Future;
  * Later we'll add Funkin-specific caching to this.
  */
 @:nullSafety
-class Assets // stolen from the FNF source code
+class Assets // stolen from FNF github
 {
 	/**
 	 * Get the file system path for an asset
