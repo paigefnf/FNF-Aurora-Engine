@@ -2,15 +2,14 @@
 <project>
 	<!-- _________________________ Application Settings _________________________ -->
 
-	<app title="Friday Night Funkin' - Aurora Engine" 
-	 file="Aurora Engine" 
-	 main="funkin.backend.system.Main" 
-	 version="0.0.1" 
-	 company="PaigeFNF" 
-	/>
+	<app title="Friday Night Funkin' - Aurora Engine" file="Aurora Engine" packageName="com.paigefnf.aurora" package="com.paigefnf.aurora" main="funkin.backend.Main" version="0.6.4" company="PaigeFNF" />
+
+	<!--Switch Export with Unique ApplicationID and Icon-->
+	<set name="APP_ID" value="0x0100f6c013bbc000" />
 
 	<!--The flixel preloader is not accurate in Chrome. You can use it regularly if you embed the swf into a html file
 		or you can set the actual size of your file manually at "FlxPreloaderBase-onUpdate-bytesTotal"-->
+	<!-- <app preloader="Preloader" resizable="true" /> -->
 	<app preloader="flixel.system.FlxPreloader" />
 
 	<!--Minimum without FLX_NO_GAMEPAD: 11.8, without FLX_NO_NATIVE_CURSOR: 11.2-->
@@ -19,71 +18,91 @@
 	<!-- ____________________________ Window Settings ___________________________ -->
 
 	<!--These window settings apply to all targets-->
-	<window width="1280" height="720" fps="60" background="#000000" hardware="true" vsync="false" />
+	<window width="1280" height="720" fps="140" background="#000000" hardware="true" vsync="false" />
 
 	<!--HTML5-specific-->
 	<window if="html5" resizable="true" />
 
 	<!--Desktop-specific-->
-	<window if="desktop" orientation="landscape" fullscreen="false" resizable="true" />
+	<window if="desktop" orientation="landscape" fullscreen="false" resizable="true" vsync="false"/>
 
 	<!--Mobile-specific-->
-	<window if="mobile" orientation="landscape" fullscreen="true" width="0" height="0" />
+	<window if="mobile" orientation="landscape" fullscreen="true" width="0" height="0" resizable="false"/>
+
+	<!--Switch-specific-->
+	<window if="switch" orientation="landscape" fullscreen="true" width="0" height="0" resizable="true" />
 
 	<!-- _____________________________ Path Settings ____________________________ -->
 
-	<set name="BUILD_DIR" value="export" />
-	<source path="source" />
-	<assets path="assets" />
+	<set name="BUILD_DIR" value="export/debug" if="debug" />
+	<set name="BUILD_DIR" value="export/release" unless="debug" />
+	<set name="BUILD_DIR" value="export/32bit" if="32bit" />
 
+	<classpath name="src" />
+	
+	<!-- <define name="PRELOAD_ALL" /> -->
 	<define name="PRELOAD_ALL" unless="web" />
 	<define name="NO_PRELOAD_ALL" unless="PRELOAD_ALL"/>
+	
+	<section if="PRELOAD_ALL">
+		<library name="songs"    preload="true" />
+		<library name="shared"   preload="true" />
+		<library name="videos"   preload="true" />
+	</section>
+	
+	<section if="NO_PRELOAD_ALL">
+		<library name="songs"    preload="false" />
+		<library name="shared"   preload="false" />
+		<library name="videos"   preload="false" />
+	</section>
+	
+	<assets path="assets/music/songs"    library="songs"    exclude="*.ogg" if="web"/>
+	<assets path="assets/music/songs"    library="songs"    exclude="*.mp3|*.mp4" unless="web"/>
+	<assets path="assets/videos"    library="videos"    exclude="*.ogg" if="web"/>
+	<assets path="assets/videos"    library="vides"    exclude="*.mp3|*.mp4" unless="web"/>
+	<assets path="assets/shared"   library="shared"   exclude="*.ogg" if="web"/>
+	<assets path="assets/shared"   library="shared"   exclude="*.mp3|*.mp4" unless="web"/>
+	
+	
+	<assets path='addons' embed='false'/>
 
-	<library name="assets"    preload="true"  if="PRELOAD_ALL"/>
-	<library name="assets"    preload="false" if="NO_PRELOAD_ALL" />
-
-	<assets path='content' embed='false'/>
-
+	<assets path="assets/fonts" embed='true'/>
 	<!-- _______________________________ Libraries ______________________________ -->
 
 	<haxelib name="flixel" />
-	
 	<haxelib name="flixel-addons" />
-
-	<haxelib name="flixel-ui" />
-
-	<haxelib name="funkin.vis" />
-
-	<haxelib name="grig.audio" />
-
-	<haxelib name="hxdiscord_rpc" />
-
-	<haxelib name="flxanimate" />
-
 	<haxelib name="hscript" />
+	<haxelib name="flixel-ui" />
+	<haxelib name="faxe" if='switch'/>
+	<haxelib name="discord_rpc" if="desktop"/>
+	<haxelib name="actuate" />
+	<haxelib name="away3d" />
+	<haxelib name="hxcpp-debug-server" if="desktop"/>
 
+	<!-- ______________________________ DEFINES _____________________________ -->
 
-	<!-- ______________________________ Haxedefines _____________________________ -->
-
-	<!--Remove the legacy health system-->
-	<haxedef name="FLX_NO_HEALTH" />
-
-	<!--Optimise inputs, be careful you will get null errors if you don't use conditionals in your game-->
-	<haxedef name="FLX_NO_MOUSE" if="mobile" />
-	<haxedef name="FLX_NO_KEYBOARD" if="mobile" />
-	<haxedef name="FLX_NO_TOUCH" if="desktop" />
+	<!-- _________________________ Default Haxe defines _____________________________ -->
+	<!--Disable the Flixel core focus lost screen-->
+	<haxedef name="FLX_NO_FOCUS_LOST_SCREEN" />
 
 	<!--Disable the Flixel core debugger. Automatically gets set whenever you compile in release mode!-->
 	<haxedef name="FLX_NO_DEBUG" unless="debug" />
 
-	<!--Enable this for Nape release builds for a serious peformance improvement-->
+	<!--Reduce compile times-->
 	<haxedef name="NAPE_RELEASE_BUILD" unless="debug" />
 
-	<!-- Haxe 4.3.0+: Enable pretty syntax errors and stuff. -->
-	<!-- pretty (haxeflixel default), indent, classic (haxe compiler default) -->
-	<haxedef name="message.reporting" value="pretty" />
+	<!-- __________________________ ENGINE DEFINES _____________________________ -->
 
-	<!-- _________________________________ Custom _______________________________ -->
+	<!-- Comment out if you want to disable mod support -->
+	 <haxedef name="MOD_SUPPORT" unless="web" />
 
-	<!--Place custom nodes like icons here-->
+	<!-- _________________________ Application Icons _______________________________ -->
+
+	<!--Place custom nodes like icons here (higher priority to override the HaxeFlixel icon)-->
+	
+	<icon path="art/icons/icon16.png" size='16'/>
+	<icon path="art/icons/icon32.png" size='32'/>
+	<icon path="art/icons/icon64.png" size='64'/>
+	<icon path="art/icons/iconOG.png" if="html5"/>
+	
 </project>
