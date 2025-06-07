@@ -2,7 +2,7 @@
 <project>
 	<!-- _________________________ Application Settings _________________________ -->
 
-	<app title="Friday Night Funkin' - Aurora Engine" file="Aurora Engine" packageName="com.paigefnf.aurora" package="com.paigefnf.aurora" main="funkin.backend.Main" version="0.6.4" company="PaigeFNF" />
+	<app title="Friday Night Funkin' - Aurora Engine" file="Aurora Engine" packageName="com.paigefnf.aurora" package="com.paigefnf.aurora" main="funkin.backend.system.Main" version="0.6.4" company="PaigeFNF" />
 
 	<!--Switch Export with Unique ApplicationID and Icon-->
 	<set name="APP_ID" value="0x0100f6c013bbc000" />
@@ -38,7 +38,7 @@
 	<set name="BUILD_DIR" value="export/release" unless="debug" />
 	<set name="BUILD_DIR" value="export/32bit" if="32bit" />
 
-	<classpath name="src" />
+	<classpath name="source" />
 	
 	<!-- <define name="PRELOAD_ALL" /> -->
 	<define name="PRELOAD_ALL" unless="web" />
@@ -46,7 +46,6 @@
 	
 	<section if="PRELOAD_ALL">
 		<library name="songs"    preload="true" />
-		<library name="shared"   preload="true" />
 		<library name="videos"   preload="true" />
 	</section>
 	
@@ -59,9 +58,9 @@
 	<assets path="assets/music/songs"    library="songs"    exclude="*.ogg" if="web"/>
 	<assets path="assets/music/songs"    library="songs"    exclude="*.mp3|*.mp4" unless="web"/>
 	<assets path="assets/videos"    library="videos"    exclude="*.ogg" if="web"/>
-	<assets path="assets/videos"    library="vides"    exclude="*.mp3|*.mp4" unless="web"/>
-	<assets path="assets/shared"   library="shared"   exclude="*.ogg" if="web"/>
-	<assets path="assets/shared"   library="shared"   exclude="*.mp3|*.mp4" unless="web"/>
+	<assets path="assets/videos"    library="videos"    exclude="*.mp3|*.mp4" unless="web"/>
+	<assets path="assets/images"   library="shared"   exclude="*.ogg" if="web"/>
+	<assets path="assets/images"   library="shared"   exclude="*.mp3|*.mp4" unless="web"/>
 	
 	
 	<assets path='addons' embed='false'/>
